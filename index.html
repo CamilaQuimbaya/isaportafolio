@@ -665,6 +665,17 @@ body.menu-open { overflow: hidden; }
 .contact__socials a.label:hover::after { width: 100%; }
 .contact__socials a.label:hover { color: var(--blue); }
 .contact__colofon { color: rgba(241,236,226,.5); max-width: 30ch; }
+.contact__credit {
+  margin-top: clamp(28px, 5vh, 56px);
+  color: rgba(241,236,226,.3);
+  font-family: var(--f-ui); font-size: 11px; letter-spacing: .08em;
+}
+.contact__credit a {
+  color: rgba(241,236,226,.55); text-decoration: none;
+  border-bottom: 1px solid rgba(241,236,226,.2);
+  transition: color .25s ease, border-color .25s ease;
+}
+.contact__credit a:hover { color: var(--blue); border-color: var(--blue); }
 
 /* ============================================================
    CRAZY MOTION  ·  cursor / tilt / split / parallax
@@ -1289,6 +1300,10 @@ is to think twice.">Escribir bien es pensar dos veces.</p>
       </div>
       <p class="contact__colofon reveal" data-d="1" data-es="Isaac Zapata · Copywriter &amp; Publicista · Bogotá, Colombia · 2026" data-en="Isaac Zapata · Copywriter &amp; Adman · Bogotá, Colombia · 2026">Isaac Zapata · Copywriter &amp; Publicista · Bogotá, Colombia · 2026</p>
     </div>
+    <p class="contact__credit">
+      <span data-es="Desarrollado por" data-en="Developed by">Desarrollado por</span>
+      <a href="https://camilaquimbaya.dev" target="_blank" rel="noopener">camilaquimbaya.dev</a>
+    </p>
   </div>
 </footer>
 
