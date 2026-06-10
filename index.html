@@ -819,10 +819,89 @@ body.menu-open { overflow: hidden; }
   }
   .section--cases { margin-top: clamp(-330px, -36vh, -200px); }
 }
+
+/* ============================================================
+   MARCAS / CLIENTES  ·  muro de wordmarks
+   ============================================================ */
+.brands__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  border-top: 1.5px solid var(--ink);
+  border-left: 1.5px solid var(--ink);
+}
+.brand {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: clamp(92px, 11vw, 148px); padding: 18px 22px;
+  border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+  font-family: var(--f-display); font-weight: 900; font-stretch: 110%;
+  text-transform: uppercase; letter-spacing: -0.02em; line-height: .95;
+  font-size: clamp(1.15rem, 2.3vw, 2rem); color: var(--ink-soft);
+  transition: color .3s ease, background-color .3s ease, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover {
+  color: var(--cream); background: var(--ink); transform: scale(1.02);
+}
+.brand--cta { color: var(--blue); font-style: normal; }
+.brand--cta:hover { background: var(--blue); color: var(--cream); }
+
+/* ============================================================
+   CURTAIN  ·  cortina de carga "IZ" (CSS puro, auto-apertura)
+   ============================================================ */
+.curtain {
+  position: fixed; inset: 0; z-index: 11000; background: var(--ink);
+  display: grid; place-items: center; will-change: transform;
+  animation: curtain-open 1s cubic-bezier(.76, 0, .24, 1) 1.05s forwards;
+}
+.curtain__mark {
+  font-family: var(--f-display); font-weight: 900; font-stretch: 125%;
+  font-size: clamp(90px, 22vw, 300px); color: var(--blue);
+  letter-spacing: -0.05em; line-height: 1;
+  animation: curtain-mark .7s cubic-bezier(.22, 1, .36, 1) .65s forwards;
+}
+@keyframes curtain-open {
+  to { transform: translateY(-101%); visibility: hidden; }
+}
+@keyframes curtain-mark {
+  0%   { opacity: 0; transform: translateY(24px) scale(.96); }
+  35%  { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-24px) scale(.92); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .curtain { display: none; }
+}
+
+/* ============================================================
+   EFECTOS EXTRA  ·  grano + spotlight
+   ============================================================ */
+.fx-grain {
+  position: fixed; inset: -50%; z-index: 9000; pointer-events: none;
+  opacity: .045; mix-blend-mode: multiply; will-change: transform;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: fx-grain 0.5s steps(2) infinite;
+}
+@keyframes fx-grain {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-6%, 4%); }
+  50%  { transform: translate(4%, -6%); }
+  75%  { transform: translate(-4%, -4%); }
+  100% { transform: translate(6%, 4%); }
+}
+.fx-spot {
+  position: fixed; inset: 0; z-index: 6; pointer-events: none; opacity: 0;
+  transition: opacity .5s ease; mix-blend-mode: screen;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%),
+              rgba(27,51,255,.16), rgba(27,51,255,.05) 45%, transparent 72%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-grain { animation: none; }
+}
 </style>
 <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
+
+<!-- cortina de carga -->
+<div class="curtain" aria-hidden="true"><span class="curtain__mark">IZ</span></div>
 
 <!-- ========================= NAV ========================= -->
 <nav class="nav">
@@ -832,6 +911,7 @@ body.menu-open { overflow: hidden; }
     <a class="label nav__hide-sm" href="#about" data-es="Sobre" data-en="About">Sobre</a>
     <a class="label nav__hide-sm" href="#services" data-es="Servicios" data-en="Services">Servicios</a>
     <a class="label nav__hide-sm" href="#work" data-es="Trabajos" data-en="Work">Trabajos</a>
+    <a class="label nav__hide-sm" href="#brands" data-es="Marcas" data-en="Brands">Marcas</a>
     <a class="label nav__hide-sm" href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
     <div class="lang" id="lang" role="button" tabindex="0" aria-label="Cambiar idioma">
       <span class="on" data-lang="es">ES</span><span aria-hidden="true">/</span><span data-lang="en">EN</span>
@@ -849,6 +929,7 @@ body.menu-open { overflow: hidden; }
     <a href="#about" data-es="Sobre" data-en="About">Sobre</a>
     <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
     <a href="#work" data-es="Trabajos" data-en="Work">Trabajos</a>
+    <a href="#brands" data-es="Marcas" data-en="Brands">Marcas</a>
     <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
   </nav>
 </div>
@@ -1150,6 +1231,32 @@ in words">Casos de palabra</h2>
   </div>
 </section>
 
+<!-- ========================= MARCAS / CLIENTES ========================= -->
+<section class="section" id="brands">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <div>
+        <span class="label section__num">05 — <span data-es="Marcas" data-en="Brands">Marcas</span></span>
+        <h2 class="section__title" data-es="Marcas que
+confiaron" data-en="Brands that
+trusted">Marcas que confiaron</h2>
+      </div>
+      <p class="section__kicker" data-es="Una selección de marcas con las que trabajé." data-en="A selection of brands I've worked with.">Una selección de marcas con las que trabajé.</p>
+    </div>
+
+    <div class="brands__grid reveal">
+      <span class="brand">Garnier</span>
+      <span class="brand">Visa</span>
+      <span class="brand">Colombina</span>
+      <span class="brand">Bon Bon Bum</span>
+      <span class="brand">Yupis</span>
+      <span class="brand">BCR</span>
+      <span class="brand">Cencosud</span>
+      <span class="brand brand--cta" data-es="¿La próxima?" data-en="Yours next?">¿La próxima?</span>
+    </div>
+  </div>
+</section>
+
 <!-- ========================= MANIFESTO 2 ========================= -->
 <section class="manifesto alt">
   <div class="wrap">
@@ -1196,6 +1303,7 @@ is to think twice.">Escribir bien es pensar dos veces.</p>
 
 <script src="assets/js/components.js"></script>
 <script src="assets/js/interactions.js"></script>
+<script src="assets/js/extra-fx.js"></script>
 
 <!-- menú móvil (hamburguesa) -->
 <script>
