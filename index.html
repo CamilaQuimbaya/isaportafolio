@@ -3,6 +3,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Isaac Zapata — Copywriter &amp; Publicista</title>
+<meta name="description" content="Isaac Zapata, copywriter y publicista en Bogotá. Redacción publicitaria, creatividad, concepto y storytelling de marca. Las ideas necesitan amigos.">
+<meta name="author" content="Isaac Zapata">
+<meta name="theme-color" content="#1B33FF">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<!-- Open Graph / redes sociales — TODO: reemplazá https://isaaczapata.com por el dominio real al desplegar -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Isaac Zapata">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Isaac Zapata — Copywriter &amp; Publicista">
+<meta property="og:description" content="Redacción publicitaria, creatividad y storytelling de marca. Las ideas necesitan amigos.">
+<meta property="og:url" content="https://isaaczapata.com/">
+<meta property="og:image" content="https://isaaczapata.com/assets/isaac-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Isaac Zapata — Copywriter &amp; Publicista">
+<meta name="twitter:description" content="Redacción publicitaria, creatividad y storytelling de marca. Las ideas necesitan amigos.">
+<meta name="twitter:image" content="https://isaaczapata.com/assets/isaac-share.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <style>/* vietnamese */
@@ -267,6 +285,46 @@ body::after {
 .lang span { opacity: .42; transition: opacity .2s; }
 .lang span.on { opacity: 1; }
 
+/* hamburger button (mobile only) */
+.nav__burger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 30px; height: 30px; padding: 0; border: 0; background: none;
+  color: inherit; cursor: pointer;
+}
+.nav__burger span {
+  display: block; width: 24px; height: 2px; background: currentColor; border-radius: 2px;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .2s;
+}
+.nav__burger.open span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+.nav__burger.open span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
+/* full-screen mobile menu */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 990;
+  background: var(--ink); color: var(--cream);
+  display: flex; flex-direction: column; justify-content: center;
+  padding-inline: var(--pad);
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s ease, visibility .4s ease;
+}
+.mobile-menu.open { opacity: 1; visibility: visible; }
+.mobile-menu__links { display: flex; flex-direction: column; gap: clamp(6px, 1.6vh, 18px); }
+.mobile-menu__links a {
+  font-family: var(--f-display); font-weight: 900; font-stretch: 118%;
+  text-transform: uppercase; font-size: clamp(2.1rem, 11vw, 4rem);
+  line-height: .98; letter-spacing: -.02em; color: var(--cream);
+  transform: translateY(14px); opacity: 0;
+  transition: color .2s, transform .5s cubic-bezier(.22,1,.36,1), opacity .5s ease;
+}
+.mobile-menu.open .mobile-menu__links a { transform: none; opacity: 1; }
+.mobile-menu__links a:nth-child(1) { transition-delay: .06s; }
+.mobile-menu__links a:nth-child(2) { transition-delay: .12s; }
+.mobile-menu__links a:nth-child(3) { transition-delay: .18s; }
+.mobile-menu__links a:nth-child(4) { transition-delay: .24s; }
+.mobile-menu__links a:nth-child(5) { transition-delay: .30s; }
+.mobile-menu__links a:hover, .mobile-menu__links a:focus-visible { color: var(--blue); }
+body.menu-open { overflow: hidden; }
+
 /* ============================================================
    HERO  — editorial cover
    ============================================================ */
@@ -319,16 +377,16 @@ body::after {
   width: clamp(340px, 50vw, 720px);
   height: clamp(420px, 58vw, 820px);
   max-height: 84vh;
-  transform: translateY(clamp(-180px, -14vh, -70px));
+  transform: translateY(clamp(-205px, -16.5vh, -86px));
 }
 .hero__portrait image-slot,
 .hero__photo {
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: 50% 6%;
-  filter: contrast(1.02) drop-shadow(0 24px 48px rgba(18,17,16,.18));
-  -webkit-mask: linear-gradient(to bottom, #000 84%, transparent 100%);
-  mask: linear-gradient(to bottom, #000 84%, transparent 100%);
+  filter: contrast(1.02);
+  -webkit-mask: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,.45) 84%, transparent 100%);
+  mask: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,.45) 84%, transparent 100%);
 }
 
 .hero__bottom {
@@ -661,9 +719,9 @@ body::after {
 .skewable { transform: skewY(var(--skew, 0deg)); transition: transform .15s linear; will-change: transform; }
 
 /* split-line mask reveal (manifesto / contact) */
-.line-mask { display: block; overflow: hidden; }
+.line-mask { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
 .line-mask > span { display: inline-block; transition: transform 1s cubic-bezier(.22,1,.36,1); }
-.js .reveal:not(.in) .line-mask > span { transform: translateY(106%); }
+.js .reveal:not(.in) .line-mask > span { transform: translateY(120%); }
 
 /* nav auto-hide */
 .nav { transition: transform .5s cubic-bezier(.22,1,.36,1), padding .4s ease; }
@@ -724,7 +782,19 @@ body::after {
    ============================================================ */
 @media (max-width: 900px) {
   .nav__hide-sm { display: none; }
+  .nav__burger { display: flex; }
   .hero__center-note { display: none; }
+  /* foto: subirla más en pantallas medianas (el tirón de desktop no alcanza) */
+  .hero__portrait {
+    align-self: start;               /* anclar al tope, igual que la palabra → solapa siempre */
+    margin-top: clamp(50px, 8vh, 110px);
+    width: clamp(300px, 62vw, 560px);
+    height: clamp(360px, 72vw, 640px);
+    max-height: 64vh;
+    transform: none;
+  }
+  /* el carrusel sube y solapa la parte de abajo de la foto, como en desktop */
+  .section--cases { margin-top: clamp(-280px, -26vh, -150px); }
   .hero__bottom { grid-template-columns: 1fr 1fr; }
   .hero__sign { text-align: right; }
   .cases__grid { grid-template-columns: 1fr; }
@@ -738,6 +808,16 @@ body::after {
   .hero__meta.right { align-items: flex-start; text-align: left; }
   .hero__bottom { grid-template-columns: 1fr; gap: 14px; }
   .hero__sign { text-align: left; }
+  /* foto: tamaño y posición afinados para celular */
+  .hero__portrait {
+    align-self: start;
+    margin-top: clamp(38px, 6vh, 85px);
+    width: clamp(250px, 74vw, 380px);
+    height: clamp(300px, 88vw, 440px);
+    max-height: 52vh;
+    transform: none;
+  }
+  .section--cases { margin-top: clamp(-330px, -36vh, -200px); }
 }
 </style>
 <script>document.documentElement.classList.add("js");</script>
@@ -756,8 +836,22 @@ body::after {
     <div class="lang" id="lang" role="button" tabindex="0" aria-label="Cambiar idioma">
       <span class="on" data-lang="es">ES</span><span aria-hidden="true">/</span><span data-lang="en">EN</span>
     </div>
+    <button class="nav__burger" id="navBurger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ========================= MOBILE MENU ========================= -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu__links" aria-label="Menú principal">
+    <a href="#cases" data-es="Casos" data-en="Cases">Casos</a>
+    <a href="#about" data-es="Sobre" data-en="About">Sobre</a>
+    <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
+    <a href="#work" data-es="Trabajos" data-en="Work">Trabajos</a>
+    <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
+  </nav>
+</div>
 
 <!-- ========================= HERO ========================= -->
 <header class="hero" id="top">
@@ -777,7 +871,10 @@ body::after {
   <div class="hero__center">
     <div class="hero__word display">IDEAS<span class="reg-mark">®</span></div>
     <div class="hero__portrait">
-      <img class="hero__photo" src="assets/isaac-photo.png" alt="Isaac Zapata, copywriter">
+      <picture>
+        <source srcset="assets/isaac-photo.webp" type="image/webp">
+        <img class="hero__photo" src="assets/isaac-photo.png" alt="Isaac Zapata, copywriter" width="1122" height="1402">
+      </picture>
     </div>
   </div>
 
@@ -888,10 +985,10 @@ dared to say">Lo que nadie se atrevía a decir</h3>
 <!-- ========================= MANIFESTO 1 ========================= -->
 <section class="manifesto">
   <div class="wrap">
-    <p class="manifesto__q reveal" data-es="¿Y si esta vez
-sí se atreven?" data-en="What if this time
-you actually dare?">¿Y si esta vez sí se atreven?</p>
-    <div class="manifesto__sub reveal" data-d="2"><span class="label" data-es="(Dejá de jugar a lo seguro)" data-en="(Stop playing it safe)">(Dejá de jugar a lo seguro)</span></div>
+    <p class="manifesto__q reveal" data-es="Las ideas
+necesitan amigos" data-en="Ideas
+need friends">Las ideas necesitan amigos</p>
+    <div class="manifesto__sub reveal" data-d="2"><span class="label" data-es="(Ninguna buena idea viaja sola)" data-en="(No good idea travels alone)">(Ninguna buena idea viaja sola)</span></div>
   </div>
 </section>
 
@@ -1068,15 +1165,14 @@ is to think twice.">Escribir bien es pensar dos veces.</p>
   <div class="wrap">
     <span class="label contact__pre reveal" data-es="¿Tu próxima idea necesita un amigo?" data-en="Does your next idea need a friend?">¿Tu próxima idea necesita un amigo?</span>
     <h2 class="contact__big reveal" data-d="1">
-      <a href="mailto:hola@isaaczapata.co">Hablemos<span class="reg-mark">®</span></a>
+      <a href="mailto:isaaczapatar@gmail.com">Hablemos<span class="reg-mark">®</span></a>
     </h2>
     <div class="contact__row">
       <div class="contact__socials reveal">
-        <a class="label" href="mailto:hola@isaaczapata.co">hola@isaaczapata.co</a>
-        <a class="label" href="#" target="_blank" rel="noopener">Instagram</a>
-        <a class="label" href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="label" href="#" target="_blank" rel="noopener">YouTube</a>
-        <a class="label" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="label" href="mailto:isaaczapatar@gmail.com">isaaczapatar@gmail.com</a>
+        <a class="label" href="https://www.linkedin.com/in/isaaczapata" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="label" href="https://www.youtube.com/@isaaczapata" target="_blank" rel="noopener">YouTube</a>
+        <a class="label" href="https://wa.me/573000000000" target="_blank" rel="noopener">WhatsApp</a>
       </div>
       <p class="contact__colofon reveal" data-d="1" data-es="Isaac Zapata · Copywriter &amp; Publicista · Bogotá, Colombia · 2026" data-en="Isaac Zapata · Copywriter &amp; Adman · Bogotá, Colombia · 2026">Isaac Zapata · Copywriter &amp; Publicista · Bogotá, Colombia · 2026</p>
     </div>
@@ -1100,6 +1196,35 @@ is to think twice.">Escribir bien es pensar dos veces.</p>
 
 <script src="assets/js/components.js"></script>
 <script src="assets/js/interactions.js"></script>
+
+<!-- menú móvil (hamburguesa) -->
+<script>
+(function () {
+  var burger = document.getElementById("navBurger");
+  var menu = document.getElementById("mobileMenu");
+  if (!burger || !menu) return;
+  function setOpen(open) {
+    burger.classList.toggle("open", open);
+    menu.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    menu.setAttribute("aria-hidden", open ? "false" : "true");
+    document.body.classList.toggle("menu-open", open);
+  }
+  burger.addEventListener("click", function () {
+    setOpen(!menu.classList.contains("open"));
+  });
+  menu.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", function () { setOpen(false); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") setOpen(false);
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 900) setOpen(false);
+  });
+})();
+</script>
 
 
 </body></html>
