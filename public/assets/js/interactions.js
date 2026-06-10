@@ -40,6 +40,13 @@
       }
     });
     enhanceSplits();
+    // etiquetas del cursor contextual: reactivas al idioma
+    var port = document.querySelector(".hero__portrait");
+    if (port && port.hasAttribute("data-cur"))
+      port.setAttribute("data-cur-label", l === "en" ? "The ideas guy" : "El de las ideas");
+    document.querySelectorAll(".case[data-cur]").forEach(function (c) {
+      c.setAttribute("data-cur-label", l === "en" ? "Play" : "Ver");
+    });
     var toggle = document.getElementById("lang");
     if (toggle) {
       toggle.querySelectorAll("span[data-lang]").forEach(function (s) {
@@ -149,7 +156,7 @@
     var portrait = document.querySelector(".hero__portrait");
     if (portrait) {
       portrait.setAttribute("data-cur", "drag");
-      portrait.setAttribute("data-cur-label", lang === "en" ? "Your photo" : "Tu foto");
+      portrait.setAttribute("data-cur-label", lang === "en" ? "The ideas guy" : "El de las ideas");
       portrait.classList.add("cursor-hide");
     }
 

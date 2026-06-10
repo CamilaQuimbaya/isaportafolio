@@ -439,6 +439,8 @@ body.menu-open { overflow: hidden; }
   padding-block: clamp(12px, 1.6vw, 20px);
 }
 .marquee.invert { background: var(--blue); color: var(--cream); border-color: var(--blue); }
+.marquee--after { margin-top: clamp(36px, 6vh, 96px); padding-block: clamp(7px, 0.9vw, 12px); }
+.marquee--after .marquee__track span { font-size: clamp(14px, 1.9vw, 24px); }
 .marquee__track {
   display: flex; gap: clamp(28px, 4vw, 70px); width: max-content;
   animation: slide 32s linear infinite;
@@ -479,7 +481,7 @@ body.menu-open { overflow: hidden; }
   padding-block: 0;
   position: relative;
   z-index: 10;
-  margin-top: clamp(-440px, -40vh, -250px);
+  margin-top: clamp(-360px, -32vh, -200px);
   padding-bottom: clamp(16px, 3vh, 38px);
 }
 .cases__head {
@@ -843,6 +845,15 @@ body.menu-open { overflow: hidden; }
 }
 .brand--cta { color: var(--blue); font-style: normal; }
 .brand--cta:hover { background: var(--blue); color: var(--cream); }
+/* logo monocromático (la marca se usa como máscara recoloreada a tinta) */
+.brand__logo {
+  display: block; width: 100%; max-width: 168px; height: clamp(34px, 4.4vw, 56px);
+  background-color: var(--ink-soft);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+  transition: background-color .3s ease;
+}
+.brand:hover .brand__logo { background-color: var(--cream); }
 
 /* ============================================================
    CURTAIN  ·  cortina de carga "IZ" (CSS puro, auto-apertura)
@@ -976,14 +987,6 @@ body.menu-open { overflow: hidden; }
   </a>
 </header>
 
-<!-- ========================= MARQUEE 1 ========================= -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</span><span data-es="Storytelling" data-en="Storytelling">Storytelling</span><span data-es="Comerciales de TV" data-en="TV commercials">Comerciales de TV</span><span data-es="Conceptos de campaña" data-en="Campaign concepts">Conceptos de campaña</span><span data-es="Naming &amp; tagline" data-en="Naming &amp; tagline">Naming &amp; tagline</span><span data-es="Guion &amp; voz de marca" data-en="Script &amp; brand voice">Guion &amp; voz de marca</span>
-    <span data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</span><span data-es="Storytelling" data-en="Storytelling">Storytelling</span><span data-es="Comerciales de TV" data-en="TV commercials">Comerciales de TV</span><span data-es="Conceptos de campaña" data-en="Campaign concepts">Conceptos de campaña</span><span data-es="Naming &amp; tagline" data-en="Naming &amp; tagline">Naming &amp; tagline</span><span data-es="Guion &amp; voz de marca" data-en="Script &amp; brand voice">Guion &amp; voz de marca</span>
-  </div>
-</div>
-
 <!-- ========================= VIDEO CASES ========================= -->
 <section class="section section--cases" id="cases">
   <div class="wrap">
@@ -1062,6 +1065,14 @@ dared to say">Lo que nadie se atrevía a decir</h3>
     </div>
   </div>
 </section>
+
+<!-- ========================= MARQUEE 1 (negro, debajo de los casos) ========================= -->
+<div class="marquee marquee--after" aria-hidden="true">
+  <div class="marquee__track">
+    <span data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</span><span data-es="Storytelling" data-en="Storytelling">Storytelling</span><span data-es="Comerciales de TV" data-en="TV commercials">Comerciales de TV</span><span data-es="Conceptos de campaña" data-en="Campaign concepts">Conceptos de campaña</span><span data-es="Naming &amp; tagline" data-en="Naming &amp; tagline">Naming &amp; tagline</span><span data-es="Guion &amp; voz de marca" data-en="Script &amp; brand voice">Guion &amp; voz de marca</span>
+    <span data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</span><span data-es="Storytelling" data-en="Storytelling">Storytelling</span><span data-es="Comerciales de TV" data-en="TV commercials">Comerciales de TV</span><span data-es="Conceptos de campaña" data-en="Campaign concepts">Conceptos de campaña</span><span data-es="Naming &amp; tagline" data-en="Naming &amp; tagline">Naming &amp; tagline</span><span data-es="Guion &amp; voz de marca" data-en="Script &amp; brand voice">Guion &amp; voz de marca</span>
+  </div>
+</div>
 
 <!-- ========================= MANIFESTO 1 ========================= -->
 <section class="manifesto">
@@ -1245,13 +1256,8 @@ trusted">Marcas que confiaron</h2>
     </div>
 
     <div class="brands__grid reveal">
-      <span class="brand">Garnier</span>
-      <span class="brand">Visa</span>
-      <span class="brand">Colombina</span>
-      <span class="brand">Bon Bon Bum</span>
-      <span class="brand">Yupis</span>
-      <span class="brand">BCR</span>
-      <span class="brand">Cencosud</span>
+      <span class="brand"><i class="brand__logo" style="--logo:url('assets/logos/visa.svg')" role="img" aria-label="Visa"></i></span>
+      <span class="brand"><i class="brand__logo" style="--logo:url('assets/logos/cencosud.svg')" role="img" aria-label="Cencosud"></i></span>
       <span class="brand brand--cta" data-es="¿La próxima?" data-en="Yours next?">¿La próxima?</span>
     </div>
   </div>
