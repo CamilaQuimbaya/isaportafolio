@@ -558,6 +558,11 @@ body.menu-open { overflow: hidden; }
   font-family: var(--f-serif); font-style: italic;
   font-size: clamp(2.6rem, 9.5vw, 11rem); line-height: .9; letter-spacing: -0.02em;
 }
+.manifesto__text {
+  max-width: 46ch; margin: clamp(30px, 4.5vw, 60px) auto 0;
+  font-size: clamp(1.02rem, 1.65vw, 1.45rem); line-height: 1.5; opacity: .9;
+}
+.manifesto__text .amp { font-family: var(--f-serif); font-style: italic; opacity: 1; }
 .manifesto__sub { margin-top: clamp(20px, 3vw, 40px); }
 .manifesto__sub .label { color: var(--cream); opacity: .72; }
 
@@ -935,7 +940,6 @@ body.menu-open { overflow: hidden; }
   <div class="nav__links">
     <a class="label nav__hide-sm" href="#cases" data-es="Casos" data-en="Cases">Casos</a>
     <a class="label nav__hide-sm" href="#about" data-es="Sobre" data-en="About">Sobre</a>
-    <a class="label nav__hide-sm" href="#services" data-es="Servicios" data-en="Services">Servicios</a>
     <a class="label nav__hide-sm" href="#work" data-es="Trabajos" data-en="Work">Trabajos</a>
     <a class="label nav__hide-sm" href="#brands" data-es="Marcas" data-en="Brands">Marcas</a>
     <a class="label nav__hide-sm" href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
@@ -953,7 +957,6 @@ body.menu-open { overflow: hidden; }
   <nav class="mobile-menu__links" aria-label="Menú principal">
     <a href="#cases" data-es="Casos" data-en="Cases">Casos</a>
     <a href="#about" data-es="Sobre" data-en="About">Sobre</a>
-    <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
     <a href="#work" data-es="Trabajos" data-en="Work">Trabajos</a>
     <a href="#brands" data-es="Marcas" data-en="Brands">Marcas</a>
     <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
@@ -1082,18 +1085,16 @@ body.menu-open { overflow: hidden; }
 <!-- ========================= MARQUEE 1 (negro, debajo de los casos) ========================= -->
 <div class="marquee marquee--after" aria-hidden="true">
   <div class="marquee__track">
-    <span data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</span><span data-es="Storytelling" data-en="Storytelling">Storytelling</span><span data-es="Comerciales de TV" data-en="TV commercials">Comerciales de TV</span><span data-es="Conceptos de campaña" data-en="Campaign concepts">Conceptos de campaña</span><span data-es="Naming &amp; tagline" data-en="Naming &amp; tagline">Naming &amp; tagline</span><span data-es="Guion &amp; voz de marca" data-en="Script &amp; brand voice">Guion &amp; voz de marca</span>
-    <span data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</span><span data-es="Storytelling" data-en="Storytelling">Storytelling</span><span data-es="Comerciales de TV" data-en="TV commercials">Comerciales de TV</span><span data-es="Conceptos de campaña" data-en="Campaign concepts">Conceptos de campaña</span><span data-es="Naming &amp; tagline" data-en="Naming &amp; tagline">Naming &amp; tagline</span><span data-es="Guion &amp; voz de marca" data-en="Script &amp; brand voice">Guion &amp; voz de marca</span>
+    <span data-es="Asistido por IA" data-en="AI-assisted">Asistido por IA</span><span data-es="Film" data-en="Film">Film</span><span data-es="Digital" data-en="Digital">Digital</span><span data-es="Retail" data-en="Retail">Retail</span><span data-es="CRM" data-en="CRM">CRM</span><span data-es="Campañas 360°" data-en="360° campaigns">Campañas 360°</span>
+    <span data-es="Asistido por IA" data-en="AI-assisted">Asistido por IA</span><span data-es="Film" data-en="Film">Film</span><span data-es="Digital" data-en="Digital">Digital</span><span data-es="Retail" data-en="Retail">Retail</span><span data-es="CRM" data-en="CRM">CRM</span><span data-es="Campañas 360°" data-en="360° campaigns">Campañas 360°</span>
   </div>
 </div>
 
 <!-- ========================= MANIFESTO 1 ========================= -->
 <section class="manifesto">
   <div class="wrap">
-    <p class="manifesto__q reveal" data-es="Las ideas
-necesitan amigos" data-en="Ideas
-need friends">Las ideas necesitan amigos</p>
-    <div class="manifesto__sub reveal" data-d="2"><span class="label" data-es="(Ninguna buena idea viaja sola)" data-en="(No good idea travels alone)">(Ninguna buena idea viaja sola)</span></div>
+    <p class="manifesto__q reveal" data-es="Menos &quot;VS.&quot; más &quot;&amp;&quot;." data-en="Less &quot;VS.&quot; more &quot;&amp;&quot;.">Menos "VS." más "&amp;".</p>
+    <p class="manifesto__text reveal" data-d="3" data-es="A la publicidad le encanta una buena pelea. Pero bajemos los guantes y pasemos de Copy vs Cliente vs Jefe vs Colega a Copy &amp; Cliente &amp; Jefe &amp; Colega. Sin el &quot;vs&quot;, las ideas se vuelven mejor trabajo." data-en="Advertising loves a good fight. But let's drop the gloves and go from Copy vs Client vs Boss vs Colleague to Copy &amp; Client &amp; Boss &amp; Colleague. Without the &quot;vs&quot;, ideas turn into better work.">A la publicidad le encanta una buena pelea. Pero bajemos los guantes y pasemos de Copy vs Cliente vs Jefe vs Colega a Copy &amp; Cliente &amp; Jefe &amp; Colega. Sin el "vs", las ideas se vuelven mejor trabajo.</p>
   </div>
 </section>
 
@@ -1110,60 +1111,39 @@ writing">Quién escribe</h2>
     </div>
 
     <div class="about__grid">
-      <p class="about__lead reveal" data-es="Soy Isaac Zapata. Hace más de diez años convierto briefs en &lt;span class='em'&gt;ideas que la gente recuerda&lt;/span&gt; — y, mejor aún, repite." data-en="I'm Isaac Zapata. For over ten years I've turned briefs into &lt;span class='em'&gt;ideas people remember&lt;/span&gt; — and, better still, repeat.">
-        Soy Isaac Zapata. Hace más de diez años convierto briefs en <span class="em">ideas que la gente recuerda</span> — y, mejor aún, repite.
+      <p class="about__lead reveal" data-es="Hola, soy Isaac. Copywriter senior movido por &lt;span class='em'&gt;las ideas y el impacto cultural&lt;/span&gt;." data-en="Hi, I'm Isaac. A senior copywriter driven by &lt;span class='em'&gt;ideas and cultural impact&lt;/span&gt;.">
+        Hola, soy Isaac. Copywriter senior movido por <span class="em">las ideas y el impacto cultural</span>.
       </p>
       <div class="about__body">
-        <p class="reveal" data-d="1" data-es="Caleño de nacimiento, bogotano de oficio. Copywriter publicista senior especializado en redacción publicitaria, creatividad, comerciales y storytelling. Escribo para que las marcas suenen a personas, no a folletos." data-en="Born in Cali, working out of Bogotá. Senior copywriter specialized in advertising writing, creative, TV spots and storytelling. I write so brands sound like people, not brochures.">
-          Caleño de nacimiento, bogotano de oficio. Copywriter publicista senior especializado en redacción publicitaria, creatividad, comerciales y storytelling.
-        </p>
-        <p class="reveal" data-d="2" data-es="Trabajo la idea desde el insight hasta el último frame: concepto, guion, tagline y voz de marca. Las ideas necesitan amigos — y yo me encargo de que encuentren a los suyos." data-en="I work the idea from insight to final frame: concept, script, tagline and brand voice. Ideas need friends — and I make sure they find theirs.">
-          Trabajo la idea desde el insight hasta el último frame: concepto, guion, tagline y voz de marca.
-        </p>
         <div class="about__facts">
-          <div class="reveal" data-d="1"><div class="fact__n">10+</div><div class="fact__l label" data-es="Años de oficio" data-en="Years in">Años de oficio</div></div>
-          <div class="reveal" data-d="2"><div class="fact__n">2</div><div class="fact__l label" data-es="Ciudades · CO" data-en="Cities · CO">Ciudades · CO</div></div>
-          <div class="reveal" data-d="3"><div class="fact__n">∞</div><div class="fact__l label" data-es="Versiones del titular" data-en="Headline drafts">Versiones del titular</div></div>
-          <div class="reveal" data-d="4"><div class="fact__n">1</div><div class="fact__l label" data-es="Idea que convence" data-en="Idea that lands">Idea que convence</div></div>
+          <div class="reveal" data-d="1"><div class="fact__n">+10</div><div class="fact__l label" data-es="Años de experiencia" data-en="Years experience">Años de experiencia</div></div>
+          <div class="reveal" data-d="2"><div class="fact__n">+20</div><div class="fact__l label" data-es="Marcas trabajadas" data-en="Brands worked with">Marcas trabajadas</div></div>
+          <div class="reveal" data-d="3"><div class="fact__n" data-es="Montones" data-en="Lots">Montones</div><div class="fact__l label" data-es="de briefs vendidos &amp; producidos" data-en="of briefs sold &amp; produced">de briefs vendidos &amp; producidos</div></div>
+          <div class="reveal" data-d="4"><div class="fact__n">Cannes &amp; Clio</div><div class="fact__l label" data-es="nivel de ambición" data-en="level ambitions">nivel de ambición</div></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ========================= SERVICES ========================= -->
-<section class="section" id="services">
-  <div class="wrap">
-    <div class="section__head reveal">
-      <div>
-        <span class="label section__num">03 — <span data-es="Servicios" data-en="Services">Servicios</span></span>
-        <h2 class="section__title" data-es="Lo que
-hago" data-en="What
-I do">Lo que hago</h2>
-      </div>
-      <p class="section__kicker" data-es="De la primera línea al último plano. Pensar, escribir, convencer." data-en="From the first line to the final cut. Think, write, convince.">De la primera línea al último plano.</p>
-    </div>
-
-    <div class="serv">
+    <div class="serv" style="margin-top: clamp(48px, 7vw, 110px)">
       <div class="serv__row reveal">
         <span class="serv__idx label">01</span>
-        <h3 class="serv__name" data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</h3>
-        <p class="serv__desc label" data-es="Titulares, bodycopy, taglines y manifiestos que la gente recuerda." data-en="Headlines, body copy, taglines and manifestos people remember.">Titulares, bodycopy, taglines y manifiestos.</p>
+        <h3 class="serv__name" data-es="Asistido por IA" data-en="AI-assisted">Asistido por IA</h3>
+        <p class="serv__desc label" data-es="La IA como herramienta, no como reemplazo. Prompts para generar rápido key visuals y storyboards que ayudan al cliente a ver la idea antes de producirla." data-en="AI as a tool, not a replacement. Prompting fast key visuals and storyboards to help clients see the idea before it's built.">La IA como herramienta, no como reemplazo. Prompts para generar rápido key visuals y storyboards que ayudan al cliente a ver la idea antes de producirla.</p>
       </div>
       <div class="serv__row reveal">
         <span class="serv__idx label">02</span>
-        <h3 class="serv__name" data-es="Creatividad &amp; concepto" data-en="Creative &amp; concept">Creatividad &amp; concepto</h3>
-        <p class="serv__desc label" data-es="Del insight a la gran idea. La plataforma que aguanta toda una campaña." data-en="From insight to big idea. The platform that holds a whole campaign.">Del insight a la gran idea.</p>
+        <h3 class="serv__name" data-es="Campañas &amp; conceptos 360°" data-en="360° campaigns &amp; concepts">Campañas &amp; conceptos 360°</h3>
+        <p class="serv__desc label" data-es="Desarrollo narrativas que escalan en cada punto de contacto y detonan conversaciones culturales." data-en="Developing narratives that scale across every touchpoint and trigger cultural conversations.">Desarrollo narrativas que escalan en cada punto de contacto y detonan conversaciones culturales.</p>
       </div>
       <div class="serv__row reveal">
         <span class="serv__idx label">03</span>
-        <h3 class="serv__name" data-es="Comerciales &amp; guion" data-en="Spots &amp; scripts">Comerciales &amp; guion</h3>
-        <p class="serv__desc label" data-es="Guiones para TV y digital. Estructura, ritmo y un final que se queda." data-en="Scripts for TV and digital. Structure, rhythm and an ending that sticks.">Guiones para TV y digital.</p>
+        <h3 class="serv__name" data-es="Redacción publicitaria" data-en="Advertising copy">Redacción publicitaria</h3>
+        <p class="serv__desc label" data-es="Titulares, taglines y manifiestos. Que cada línea respire vida." data-en="Headlines, taglines, and manifestos. Making sure every line breathes life.">Titulares, taglines y manifiestos. Que cada línea respire vida.</p>
       </div>
       <div class="serv__row reveal">
         <span class="serv__idx label">04</span>
-        <h3 class="serv__name" data-es="Storytelling de marca" data-en="Brand storytelling">Storytelling de marca</h3>
-        <p class="serv__desc label" data-es="La voz, el relato y el universo verbal que hace única a una marca." data-en="The voice, the narrative and the verbal world that makes a brand its own.">La voz y el relato de la marca.</p>
+        <h3 class="serv__name" data-es="Film &amp; guion" data-en="Film &amp; scriptwriting">Film &amp; guion</h3>
+        <p class="serv__desc label" data-es="Escritura de comerciales para TV y digital que enganchan." data-en="Writing tv and digital spots that engage.">Escritura de comerciales para TV y digital que enganchan.</p>
       </div>
     </div>
   </div>
@@ -1182,7 +1162,7 @@ I do">Lo que hago</h2>
   <div class="wrap">
     <div class="section__head reveal">
       <div>
-        <span class="label section__num">04 — <span data-es="Trabajos seleccionados" data-en="Selected work">Trabajos seleccionados</span></span>
+        <span class="label section__num">03 — <span data-es="Trabajos seleccionados" data-en="Selected work">Trabajos seleccionados</span></span>
         <h2 class="section__title" data-es="Casos
 de palabra" data-en="Cases
 in words">Casos de palabra</h2>
@@ -1260,7 +1240,7 @@ in words">Casos de palabra</h2>
   <div class="wrap">
     <div class="section__head reveal">
       <div>
-        <span class="label section__num">05 — <span data-es="Marcas" data-en="Brands">Marcas</span></span>
+        <span class="label section__num">04 — <span data-es="Marcas" data-en="Brands">Marcas</span></span>
         <h2 class="section__title" data-es="Marcas que
 confiaron" data-en="Brands that
 trusted">Marcas que confiaron</h2>
@@ -1316,7 +1296,6 @@ is to think twice.">Escribir bien es pensar dos veces.</p>
       <span data-es="Cerrar" data-en="Close">Cerrar</span> ✕
     </div>
     <div id="lb-frame"></div>
-    <div class="lightbox__note label" data-es="Enlazá tu video de YouTube en data-yt de cada caso" data-en="Link your YouTube video in each case's data-yt">Enlazá tu video de YouTube en data-yt de cada caso</div>
   </div>
 </div>
 
