@@ -864,23 +864,22 @@ body.menu-open { overflow: hidden; }
 /* ============================================================
    MARCAS / CLIENTES  ·  muro de wordmarks
    ============================================================ */
-.brands { border-top: 1.5px solid rgba(255,255,255,.14); border-left: 1.5px solid rgba(255,255,255,.14);
-  background: var(--ink); }
+.brands { border-top: 1.5px solid var(--ink); border-left: 1.5px solid var(--ink); }
 .brands__lead { display: grid; grid-template-columns: repeat(3, 1fr); }
 .brands__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 .brand {
   display: flex; align-items: center; justify-content: center; text-align: center;
   padding: 18px 22px;
-  border-right: 1.5px solid rgba(255,255,255,.14); border-bottom: 1.5px solid rgba(255,255,255,.14);
-  transition: background-color .3s ease;
+  border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+  transition: background-color .35s ease;
 }
-.brand:hover { background: rgba(255,255,255,.06); }
+.brand:hover { background: var(--ink); }
 .brand img {
   display: block; max-width: 100%; object-fit: contain;
-  filter: brightness(0) invert(1); opacity: .5;
-  transition: filter .4s ease, opacity .4s ease, transform .4s cubic-bezier(.22,1,.36,1);
+  filter: grayscale(1) contrast(1.05); opacity: 1;
+  transition: filter .4s ease, transform .4s cubic-bezier(.22,1,.36,1);
 }
-.brand:hover img { filter: none; opacity: 1; transform: scale(1.05); }
+.brand:hover img { filter: grayscale(0); transform: scale(1.05); }
 /* 3 marcas grandes */
 .brand--lg { min-height: clamp(150px, 19vw, 250px); }
 .brand--lg img { max-height: clamp(66px, 9vw, 118px); }
