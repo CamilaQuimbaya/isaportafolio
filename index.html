@@ -818,13 +818,39 @@ body.menu-open { overflow: hidden; }
   display: none; place-items: center; padding: var(--pad);
 }
 .lightbox.open { display: grid; }
-.lightbox__inner { width: min(1100px, 100%); aspect-ratio: 16/9; position: relative; }
-.lightbox__inner.vertical { width: auto; height: min(86vh, 780px); max-width: 100%; aspect-ratio: 9/16; }
-.lightbox__inner #lb-frame { position: absolute; inset: 0; }
-.lightbox__inner iframe { width: 100%; height: 100%; border: 0; }
+.lightbox__inner {
+  position: relative; display: flex; flex-direction: column;
+  gap: clamp(16px, 2.4vw, 28px);
+  width: min(1000px, 100%); max-height: 92vh;
+}
+.lightbox__video { position: relative; width: 100%; aspect-ratio: 16/9; flex: none; }
+.lightbox__video #lb-frame { position: absolute; inset: 0; }
+.lightbox__video iframe { width: 100%; height: 100%; border: 0; }
+.lightbox__cap { color: var(--cream); }
+.lightbox__cap:empty { display: none; }
+.lightbox__cap .cap-hook {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(1.25rem, 2.3vw, 1.9rem); line-height: 1.12; letter-spacing: -0.01em;
+}
+.lightbox__cap .cap-desc {
+  margin-top: 12px; font-size: clamp(14px, 1.05vw, 16px); line-height: 1.55;
+  opacity: .78; max-width: 60ch;
+}
+/* Short vertical: video + texto lado a lado (desktop) */
+.lightbox__inner.vertical {
+  flex-direction: row; align-items: center; width: auto;
+  max-width: min(1040px, 100%); gap: clamp(22px, 3vw, 46px);
+}
+.lightbox__inner.vertical .lightbox__video { width: auto; height: min(82vh, 720px); aspect-ratio: 9/16; }
+.lightbox__inner.vertical .lightbox__cap { flex: 1 1 300px; max-width: 380px; }
+/* móvil: siempre en columna */
+@media (max-width: 760px) {
+  .lightbox__inner.vertical { flex-direction: column; align-items: stretch; width: min(460px, 100%); }
+  .lightbox__inner.vertical .lightbox__video { width: 100%; height: auto; max-height: 60vh; }
+}
 .lightbox__close { position: absolute; top: -46px; right: 0; color: var(--cream);
   font-family: var(--f-ui); font-weight: 500; letter-spacing: .14em; font-size: 13px;
-  text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+  text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 2; }
 .lightbox__note { position: absolute; bottom: -42px; left: 0; color: rgba(241,236,226,.55);
   font-size: 13px; letter-spacing: .04em; }
 
@@ -1040,7 +1066,11 @@ body.menu-open { overflow: hidden; }
     </div>
 
     <div class="cases__carousel" id="casesCarousel">
-      <article class="case reveal" data-yt="e_XxXNaKrHk" data-vertical="1">
+      <article class="case reveal" data-yt="e_XxXNaKrHk" data-vertical="1"
+        data-hook-es="Cuando lo explica una leyenda del fútbol, todo encaja."
+        data-hook-en="When a football legend explains it, it just clicks."
+        data-desc-es="Escúchalo de tu DT, Iker Casillas, y paga con Visa para ganarte un viaje al Mundial FIFA 2026™."
+        data-desc-en="Hear it from your DT, Iker Casillas, and pay with Visa for a chance to win a trip to the FIFA World Cup 2026™.">
         <div class="case__thumb"><image-slot id="case-feature" src="https://i.ytimg.com/vi/e_XxXNaKrHk/oardefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
@@ -1053,7 +1083,11 @@ body.menu-open { overflow: hidden; }
         </div>
       </article>
 
-      <article class="case reveal" data-d="1" data-yt="0CdqrFw2n-I" data-vertical="1">
+      <article class="case reveal" data-d="1" data-yt="0CdqrFw2n-I" data-vertical="1"
+        data-hook-es="Cuando lo explica una leyenda del fútbol, todo encaja."
+        data-hook-en="When a football legend explains it, it just clicks."
+        data-desc-es="Escúchalo de tu DT, Iker Casillas, y paga con Visa para ganarte un viaje al Mundial FIFA 2026™."
+        data-desc-en="Hear it from your DT, Iker Casillas, and pay with Visa for a chance to win a trip to the FIFA World Cup 2026™.">
         <div class="case__thumb"><image-slot id="case-2" src="https://i.ytimg.com/vi/0CdqrFw2n-I/oardefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
@@ -1066,7 +1100,11 @@ body.menu-open { overflow: hidden; }
         </div>
       </article>
 
-      <article class="case reveal" data-d="2" data-yt="Ut894PGTfxw">
+      <article class="case reveal" data-d="2" data-yt="Ut894PGTfxw"
+        data-hook-es="Convierte cada compra en un boleto al Mundial FIFA 2026™."
+        data-hook-en="Turn every purchase into a ticket to the FIFA World Cup 2026™."
+        data-desc-es="Gracias a Visa."
+        data-desc-en="Thanks to Visa.">
         <div class="case__thumb"><image-slot id="case-3" src="https://i.ytimg.com/vi/Ut894PGTfxw/maxresdefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
@@ -1079,7 +1117,11 @@ body.menu-open { overflow: hidden; }
         </div>
       </article>
 
-      <article class="case reveal" data-d="1" data-yt="jG6VO0kYk3Q">
+      <article class="case reveal" data-d="1" data-yt="jG6VO0kYk3Q"
+        data-hook-es="Hay una pasión única que nos hace dejarnos llevar a todos."
+        data-hook-en="There is a unique passion that makes us all let ourselves go."
+        data-desc-es="Ahora, déjate llevar al Mundial FIFA 2026™, gracias a Visa."
+        data-desc-en="Now, let yourself go to the FIFA World Cup 2026™, thanks to Visa.">
         <div class="case__thumb"><image-slot id="case-4" src="https://i.ytimg.com/vi/jG6VO0kYk3Q/maxresdefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
@@ -1092,7 +1134,11 @@ body.menu-open { overflow: hidden; }
         </div>
       </article>
 
-      <article class="case reveal" data-d="2" data-yt="e7nKF4H8SJY">
+      <article class="case reveal" data-d="2" data-yt="e7nKF4H8SJY"
+        data-hook-es="Ser hincha no es una elección; es una cultura, un código, un estilo de vida."
+        data-hook-en="Being a fan is not a choice; it's a culture, a code, a lifestyle."
+        data-desc-es="Este es el camino del hincha—y lleva directo al Mundial FIFA 2026™, gracias a Visa."
+        data-desc-en="This is the way of the fan—and it leads straight to the FIFA World Cup 2026™, thanks to Visa.">
         <div class="case__thumb"><image-slot id="case-5" src="https://i.ytimg.com/vi/e7nKF4H8SJY/maxresdefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
@@ -1309,7 +1355,8 @@ trusted">Marcas que confiaron</h2>
     <div class="lightbox__close" id="lb-close">
       <span data-es="Cerrar" data-en="Close">Cerrar</span> ✕
     </div>
-    <div id="lb-frame"></div>
+    <div class="lightbox__video"><div id="lb-frame"></div></div>
+    <div class="lightbox__cap" id="lb-cap"></div>
   </div>
 </div>
 
@@ -1318,7 +1365,7 @@ trusted">Marcas que confiaron</h2>
 <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursor-label"></span></div>
 
 <script src="assets/js/components.js"></script>
-<script src="assets/js/interactions.js?v=7"></script>
+<script src="assets/js/interactions.js?v=8"></script>
 <script src="assets/js/extra-fx.js"></script>
 
 <!-- menú móvil (hamburguesa) -->

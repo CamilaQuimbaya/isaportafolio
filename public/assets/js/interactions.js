@@ -300,10 +300,18 @@
   var lbFrame = document.getElementById("lb-frame");
   var lbClose = document.getElementById("lb-close");
 
-  function openCase(yt, vertical) {
+  function openCase(caseEl) {
     if (!lb) return;
+    var yt = caseEl.getAttribute("data-yt");
     var inner = lb.querySelector(".lightbox__inner");
-    if (inner) inner.classList.toggle("vertical", !!vertical);
+    if (inner) inner.classList.toggle("vertical", caseEl.hasAttribute("data-vertical"));
+    var cap = document.getElementById("lb-cap");
+    if (cap) {
+      var hook = caseEl.getAttribute(lang === "en" ? "data-hook-en" : "data-hook-es") || "";
+      var desc = caseEl.getAttribute(lang === "en" ? "data-desc-en" : "data-desc-es") || "";
+      cap.innerHTML = (hook ? '<p class="cap-hook">' + hook + "</p>" : "") +
+                      (desc ? '<p class="cap-desc">' + desc + "</p>" : "");
+    }
     if (yt) {
       lbFrame.innerHTML = '<iframe src="https://www.youtube.com/embed/' + yt +
         '?autoplay=1&rel=0" title="Caso en video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
@@ -382,7 +390,7 @@
   document.querySelectorAll(".case").forEach(function (c) {
     c.addEventListener("click", function () {
       if (dragged) { dragged = false; return; }
-      openCase(c.getAttribute("data-yt"), c.hasAttribute("data-vertical"));
+      openCase(c);
     });
   });
   if (lbClose) lbClose.addEventListener("click", closeLb);
