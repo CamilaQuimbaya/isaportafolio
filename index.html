@@ -864,35 +864,35 @@ body.menu-open { overflow: hidden; }
 /* ============================================================
    MARCAS / CLIENTES  ·  muro de wordmarks
    ============================================================ */
-.brands__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  border-top: 1.5px solid var(--ink);
-  border-left: 1.5px solid var(--ink);
-}
+.brands { border-top: 1.5px solid rgba(255,255,255,.14); border-left: 1.5px solid rgba(255,255,255,.14);
+  background: var(--ink); }
+.brands__lead { display: grid; grid-template-columns: repeat(3, 1fr); }
+.brands__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 .brand {
   display: flex; align-items: center; justify-content: center; text-align: center;
-  min-height: clamp(92px, 11vw, 148px); padding: 18px 22px;
-  border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
-  font-family: var(--f-display); font-weight: 900; font-stretch: 110%;
-  text-transform: uppercase; letter-spacing: -0.02em; line-height: .95;
-  font-size: clamp(1.15rem, 2.3vw, 2rem); color: var(--ink-soft);
-  transition: color .3s ease, background-color .3s ease, transform .3s cubic-bezier(.22,1,.36,1);
-}
-.brand:hover {
-  color: var(--cream); background: var(--ink); transform: scale(1.02);
-}
-.brand--cta { color: var(--blue); font-style: normal; }
-.brand--cta:hover { background: var(--blue); color: var(--cream); }
-/* logo monocromático (la marca se usa como máscara recoloreada a tinta) */
-.brand__logo {
-  display: block; width: 100%; max-width: 168px; height: clamp(34px, 4.4vw, 56px);
-  background-color: var(--ink-soft);
-  -webkit-mask: var(--logo) center / contain no-repeat;
-  mask: var(--logo) center / contain no-repeat;
+  padding: 18px 22px;
+  border-right: 1.5px solid rgba(255,255,255,.14); border-bottom: 1.5px solid rgba(255,255,255,.14);
   transition: background-color .3s ease;
 }
-.brand:hover .brand__logo { background-color: var(--cream); }
+.brand:hover { background: rgba(255,255,255,.06); }
+.brand img {
+  display: block; max-width: 100%; object-fit: contain;
+  filter: brightness(0) invert(1); opacity: .5;
+  transition: filter .4s ease, opacity .4s ease, transform .4s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover img { filter: none; opacity: 1; transform: scale(1.05); }
+/* 3 marcas grandes */
+.brand--lg { min-height: clamp(150px, 19vw, 250px); }
+.brand--lg img { max-height: clamp(66px, 9vw, 118px); }
+/* minimarcas */
+.brands__grid .brand { min-height: clamp(92px, 11vw, 140px); }
+.brands__grid .brand img { max-height: clamp(38px, 5vw, 62px); }
+.brand--cta {
+  font-family: var(--f-display); font-weight: 900; font-stretch: 110%;
+  text-transform: uppercase; letter-spacing: -0.02em; line-height: .95;
+  font-size: clamp(1.1rem, 2.1vw, 1.7rem); color: var(--blue);
+}
+.brand--cta:hover { background: var(--blue); color: var(--cream); }
 
 /* ============================================================
    CURTAIN  ·  cortina de carga "IZ" (CSS puro, auto-apertura)
@@ -1248,10 +1248,30 @@ trusted">Marcas que confiaron</h2>
       <p class="section__kicker" data-es="Una selección de marcas con las que trabajé." data-en="A selection of brands I've worked with.">Una selección de marcas con las que trabajé.</p>
     </div>
 
-    <div class="brands__grid reveal">
-      <span class="brand"><i class="brand__logo" style="--logo:url('assets/logos/visa.svg')" role="img" aria-label="Visa"></i></span>
-      <span class="brand"><i class="brand__logo" style="--logo:url('assets/logos/cencosud.svg')" role="img" aria-label="Cencosud"></i></span>
-      <span class="brand brand--cta" data-es="¿La próxima?" data-en="Yours next?">¿La próxima?</span>
+    <div class="brands reveal">
+      <div class="brands__lead">
+        <span class="brand brand--lg"><img src="assets/logos/visa.svg" alt="Visa" loading="lazy"></span>
+        <span class="brand brand--lg"><img src="assets/logos/colombina.png" alt="Colombina" loading="lazy"></span>
+        <span class="brand brand--lg"><img src="assets/logos/cencosud.svg" alt="Cencosud" loading="lazy"></span>
+      </div>
+      <div class="brands__grid">
+        <span class="brand"><img src="assets/logos/bon-bon-bum.png" alt="Bon Bon Bum" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/la-constancia.png" alt="La Constancia" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/choco-break.png" alt="Choco Break" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/nucita.png" alt="Nucita" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/coffee-delight.png" alt="Coffee Delight" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/rimax.png" alt="Rimax" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/jumbo.png" alt="Jumbo" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/kingston.png" alt="Kingston" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/juan-valdez.png" alt="Juan Valdez" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/aguila.png" alt="Águila" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/easy.png" alt="Easy" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/loreal.png" alt="L'Oréal" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/elvive-fructis.png" alt="Elvive Fructis" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/crios-colombina.png" alt="Crios de Colombina" loading="lazy"></span>
+        <span class="brand"><img src="assets/logos/xtime.png" alt="Xtime" loading="lazy"></span>
+        <span class="brand brand--cta" data-es="¿La próxima?" data-en="Yours next?">¿La próxima?</span>
+      </div>
     </div>
   </div>
 </section>
