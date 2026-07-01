@@ -642,6 +642,25 @@ body.menu-open { overflow: hidden; }
   font-family: var(--f-ui); font-weight: 500; font-size: 11px; letter-spacing: .1em;
   text-transform: uppercase; opacity: .85; }
 
+/* Work cards con portada (enlazan a Behance) */
+.work--media { padding: 0; border: none; color: var(--cream); text-decoration: none; }
+.work__cover { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #1a1a1a; }
+.work__cover img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.work--media:hover .work__cover img { transform: scale(1.05); }
+.work__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(6,7,12,0) 30%, rgba(6,7,12,.72) 100%);
+  transition: background .4s ease; }
+.work--media:hover .work__scrim { background: rgba(6,7,12,.82); }
+.work__meta { position: relative; z-index: 2; margin-top: auto;
+  padding: clamp(22px, 2.4vw, 40px); display: flex; flex-direction: column; gap: 12px; }
+.work__cue { color: var(--cream); opacity: 0; transform: translateY(6px);
+  transition: opacity .4s ease, transform .4s ease; }
+.work--media:hover .work__cue, .work--media:focus-visible .work__cue { opacity: .85; transform: translateY(0); }
+.work__name { font-family: var(--f-serif); font-style: italic; color: var(--cream);
+  font-size: clamp(1.7rem, 3.2vw, 3.3rem); line-height: 1.02; letter-spacing: -0.01em;
+  text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+
 /* ============================================================
    CONTACT / FOOTER
    ============================================================ */
@@ -1152,8 +1171,8 @@ writing">Quién escribe</h2>
 <!-- ========================= MARQUEE 2 ========================= -->
 <div class="marquee invert rev" aria-hidden="true">
   <div class="marquee__track">
-    <span data-es="Las ideas necesitan amigos" data-en="Ideas need friends">Las ideas necesitan amigos</span><span data-es="¿Y si sale bien?" data-en="What if it works?">¿Y si sale bien?</span><span data-es="Menos brief, más idea" data-en="Less brief, more idea">Menos brief, más idea</span><span data-es="Escribir es decidir" data-en="Writing is deciding">Escribir es decidir</span>
-    <span data-es="Las ideas necesitan amigos" data-en="Ideas need friends">Las ideas necesitan amigos</span><span data-es="¿Y si sale bien?" data-en="What if it works?">¿Y si sale bien?</span><span data-es="Menos brief, más idea" data-en="Less brief, more idea">Menos brief, más idea</span><span data-es="Escribir es decidir" data-en="Writing is deciding">Escribir es decidir</span>
+    <span data-es="0% Lorem Ipsum" data-en="0% Lorem Ipsum">0% Lorem Ipsum</span><span data-es="¿Y si sale bien?" data-en="What if it works?">¿Y si sale bien?</span><span data-es="Escribir bien es pensarlo dos veces. (Y borrar la mitad)" data-en="To write well is to think twice. (And delete half)">Escribir bien es pensarlo dos veces. (Y borrar la mitad)</span>
+    <span data-es="0% Lorem Ipsum" data-en="0% Lorem Ipsum">0% Lorem Ipsum</span><span data-es="¿Y si sale bien?" data-en="What if it works?">¿Y si sale bien?</span><span data-es="Escribir bien es pensarlo dos veces. (Y borrar la mitad)" data-en="To write well is to think twice. (And delete half)">Escribir bien es pensarlo dos veces. (Y borrar la mitad)</span>
   </div>
 </div>
 
@@ -1162,75 +1181,56 @@ writing">Quién escribe</h2>
   <div class="wrap">
     <div class="section__head reveal">
       <div>
-        <span class="label section__num">03 — <span data-es="Trabajos seleccionados" data-en="Selected work">Trabajos seleccionados</span></span>
-        <h2 class="section__title" data-es="Casos
-de palabra" data-en="Cases
-in words">Casos de palabra</h2>
+        <span class="label section__num">03 — <span data-es="Selección" data-en="Selected">Selección</span></span>
+        <h2 class="section__title" data-es="Trabajos" data-en="Work">Trabajos</h2>
       </div>
-      <p class="section__kicker" data-es="Una muestra de campañas y conceptos. Reemplazá los textos por tus casos reales." data-en="A sample of campaigns and concepts. Swap the copy for your real cases.">Una muestra de campañas y conceptos.</p>
     </div>
 
     <div class="works__grid">
-      <article class="work work--blue reveal">
-        <div class="work__top">
-          <span class="work__client"><span class="label" data-es="Cliente / Categoría" data-en="Client / Category">Cliente / Categoría</span></span>
-          <span class="label">2025</span>
+      <a class="work work--media reveal" href="https://www.behance.net/gallery/98037939/Yupi-Sabor-es-lo-que-hay" target="_blank" rel="noopener">
+        <div class="work__cover"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/12870d98037939.5ee962c9ec165.jpg" alt="Yupi — Sabor es lo que hay" loading="lazy"></div>
+        <span class="work__scrim"></span>
+        <div class="work__meta">
+          <span class="work__cue label">Behance ↗</span>
+          <h3 class="work__name" data-es="Sabor es lo que hay" data-en="Flavor is what we're made of">Sabor es lo que hay</h3>
         </div>
-        <p class="work__line">"<span class="em" data-es="Lo barato" data-en="Cheap">Lo barato</span> <span data-es="sale caro. Lo bien dicho, sale gratis." data-en="costs you. Well said costs nothing.">sale caro. Lo bien dicho, sale gratis.</span>"</p>
-        <div class="work__foot">
-          <span class="tag" data-es="Tagline" data-en="Tagline">Tagline</span>
-          <span class="tag" data-es="Campaña" data-en="Campaign">Campaña</span>
-        </div>
-      </article>
+      </a>
 
-      <article class="work reveal" data-d="1">
-        <div class="work__top">
-          <span class="work__client"><span class="label" data-es="Cliente / Categoría" data-en="Client / Category">Cliente / Categoría</span></span>
-          <span class="label">2024</span>
+      <a class="work work--media reveal" data-d="1" href="https://www.behance.net/gallery/219525635/Tarjeta-BCR-para-Pymes" target="_blank" rel="noopener">
+        <div class="work__cover"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/3eb94f219525635.6892ba475c429.jpg" alt="Tarjeta BCR para Pymes" loading="lazy"></div>
+        <span class="work__scrim"></span>
+        <div class="work__meta">
+          <span class="work__cue label">Behance ↗</span>
+          <h3 class="work__name" data-es="La tarjeta para los que se atreven a ser primeros." data-en="The card for those who dare to be first.">La tarjeta para los que se atreven a ser primeros.</h3>
         </div>
-        <p class="work__line">"<span data-es="No vendemos el producto." data-en="We don't sell the product.">No vendemos el producto.</span> <span class="em" data-es="Vendemos las ganas." data-en="We sell the craving.">Vendemos las ganas.</span>"</p>
-        <div class="work__foot">
-          <span class="tag" data-es="Concepto" data-en="Concept">Concepto</span>
-          <span class="tag" data-es="Comercial" data-en="Spot">Comercial</span>
-        </div>
-      </article>
+      </a>
 
-      <article class="work work--ink reveal">
-        <div class="work__top">
-          <span class="work__client"><span class="label" data-es="Cliente / Categoría" data-en="Client / Category">Cliente / Categoría</span></span>
-          <span class="label">2024</span>
+      <a class="work work--media reveal" href="https://www.behance.net/gallery/182539353/La-Seleccion-Aguilla" target="_blank" rel="noopener">
+        <div class="work__cover"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/453665182539353.652f97d715ebd.png" alt="La Selección Águila" loading="lazy"></div>
+        <span class="work__scrim"></span>
+        <div class="work__meta">
+          <span class="work__cue label">Behance ↗</span>
+          <h3 class="work__name" data-es="El hogar que llega a tu hogar." data-en="The Home that delivers to your home.">El hogar que llega a tu hogar.</h3>
         </div>
-        <p class="work__line">"<span data-es="La marca no habla más fuerte." data-en="The brand doesn't talk louder.">La marca no habla más fuerte.</span> <span class="em" data-es="Habla más claro." data-en="It talks clearer.">Habla más claro.</span>"</p>
-        <div class="work__foot">
-          <span class="tag" data-es="Voz de marca" data-en="Brand voice">Voz de marca</span>
-          <span class="tag" data-es="Manifiesto" data-en="Manifesto">Manifiesto</span>
-          <span class="tag" data-es="Storytelling" data-en="Storytelling">Storytelling</span>
-        </div>
-      </article>
+      </a>
 
-      <article class="work reveal" data-d="1">
-        <div class="work__top">
-          <span class="work__client"><span class="label" data-es="Cliente / Categoría" data-en="Client / Category">Cliente / Categoría</span></span>
-          <span class="label">2023</span>
+      <a class="work work--media reveal" data-d="1" href="https://www.behance.net/gallery/56438409/Qu-Andan-Diciendo" target="_blank" rel="noopener">
+        <div class="work__cover"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/29180f56438409.59aeec533b106.png" alt="Qué Andan Diciendo" loading="lazy"></div>
+        <span class="work__scrim"></span>
+        <div class="work__meta">
+          <span class="work__cue label">Behance ↗</span>
+          <h3 class="work__name" data-es="Lo que se dice en la calle se vuelve viral en redes." data-en="Street talk goes viral on social media.">Lo que se dice en la calle se vuelve viral en redes.</h3>
         </div>
-        <p class="work__line">"<span class="em" data-es="¿Y si lo decimos" data-en="What if we say it">¿Y si lo decimos</span> <span data-es="como nunca lo han dicho?" data-en="like it's never been said?">como nunca lo han dicho?</span>"</p>
-        <div class="work__foot">
-          <span class="tag" data-es="Idea" data-en="Idea">Idea</span>
-          <span class="tag" data-es="Lanzamiento" data-en="Launch">Lanzamiento</span>
-        </div>
-      </article>
+      </a>
 
-      <article class="work reveal" data-d="2">
-        <div class="work__top">
-          <span class="work__client"><span class="label" data-es="Cliente / Categoría" data-en="Client / Category">Cliente / Categoría</span></span>
-          <span class="label">2023</span>
+      <a class="work work--media reveal" data-d="2" href="https://www.behance.net/gallery/182544791/Hogar-en-Vivo-Rimax" target="_blank" rel="noopener">
+        <div class="work__cover"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/2b3d93182544791.Y3JvcCwxOTE3LDE1MDAsNDQ2LDA.png" alt="Hogar en Vivo — Rimax" loading="lazy"></div>
+        <span class="work__scrim"></span>
+        <div class="work__meta">
+          <span class="work__cue label">Behance ↗</span>
+          <h3 class="work__name" data-es="El hogar que llega a tu hogar." data-en="The Home that delivers to your home.">El hogar que llega a tu hogar.</h3>
         </div>
-        <p class="work__line">"<span data-es="Un buen naming no se explica." data-en="A good name needs no explaining.">Un buen naming no se explica.</span> <span class="em" data-es="Se repite." data-en="It repeats.">Se repite.</span>"</p>
-        <div class="work__foot">
-          <span class="tag" data-es="Naming" data-en="Naming">Naming</span>
-          <span class="tag" data-es="Identidad verbal" data-en="Verbal identity">Identidad verbal</span>
-        </div>
-      </article>
+      </a>
     </div>
   </div>
 </section>
