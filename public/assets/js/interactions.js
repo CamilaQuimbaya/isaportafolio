@@ -328,7 +328,31 @@
   var car = document.getElementById("casesCarousel");
   var dragged = false;
   if (car) {
-    var down = false, startX = 0, startL = 0;
+    /* Carrusel infinito: scroll horizontal nativo (para elegir un video a mano)
+       + auto-avance por tiempo. Se duplican las tarjetas para el loop sin
+       costura. Se pausa en hover y al interactuar; ignora el scroll vertical. */
+    var kids = Array.prototype.slice.call(car.querySelectorAll(".case"));
+    kids.forEach(function (n) { n.classList.add("in"); });
+    kids.forEach(function (n) {
+      var clone = n.cloneNode(true);
+      clone.classList.add("in");
+      clone.setAttribute("data-clone", "1");
+      clone.querySelectorAll("[id]").forEach(function (el) { el.removeAttribute("id"); });
+      car.appendChild(clone);
+    });
+
+    var carHover = false, idleUntil = 0, down = false, startX = 0, startL = 0;
+    var now = function () { return window.performance ? performance.now() : 0; };
+    var mark = function () { idleUntil = now() + 1400; };   // pausa breve tras interactuar
+    car.addEventListener("mouseenter", function () { carHover = true; });
+    car.addEventListener("mouseleave", function () { carHover = false; });
+    // sólo el desplazamiento horizontal (rueda/trackpad) pausa; el scroll vertical NO
+    car.addEventListener("wheel", function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) mark();
+    }, { passive: true });
+    car.addEventListener("touchstart", mark, { passive: true });
+    car.addEventListener("touchmove", mark, { passive: true });
+    // arrastre manual con el mouse
     car.addEventListener("mousedown", function (e) {
       down = true; dragged = false; startX = e.pageX; startL = car.scrollLeft;
     });
@@ -337,8 +361,22 @@
       if (!down) return;
       var dx = e.pageX - startX;
       if (Math.abs(dx) > 4) { dragged = true; car.classList.add("grabbing"); }
-      car.scrollLeft = startL - dx;
+      car.scrollLeft = startL - dx; mark();
     });
+
+    var carLoop = function (t) {
+      var half = car.scrollWidth / 2;
+      if (half > 8) {
+        if (!carHover && !down && t > idleUntil &&
+            !(lb && lb.classList.contains("open")) && !document.hidden) {
+          car.scrollLeft += 0.6;
+        }
+        if (car.scrollLeft >= half) car.scrollLeft -= half;         // loop infinito →
+        else if (car.scrollLeft < 0) car.scrollLeft += half;         // ← y en reversa
+      }
+      requestAnimationFrame(carLoop);
+    };
+    requestAnimationFrame(carLoop);
   }
   document.querySelectorAll(".case").forEach(function (c) {
     c.addEventListener("click", function () {

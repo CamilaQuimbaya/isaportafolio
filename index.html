@@ -492,13 +492,13 @@ body.menu-open { overflow: hidden; }
 .cases__carousel {
   display: flex; gap: clamp(12px, 1.4vw, 22px);
   overflow-x: auto; overflow-y: hidden;
-  scroll-snap-type: x mandatory;
+  scroll-behavior: auto;
   padding-bottom: 10px;
   scrollbar-width: thin; scrollbar-color: var(--ink) transparent;
   -webkit-overflow-scrolling: touch;
   cursor: grab;
 }
-.cases__carousel.grabbing { cursor: grabbing; scroll-snap-type: none; }
+.cases__carousel.grabbing { cursor: grabbing; }
 .cases__carousel::-webkit-scrollbar { height: 6px; }
 .cases__carousel::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 100px; }
 .cases__carousel .case {
@@ -1033,7 +1033,7 @@ body.menu-open { overflow: hidden; }
 
     <div class="cases__carousel" id="casesCarousel">
       <article class="case reveal" data-yt="e_XxXNaKrHk" data-vertical="1">
-        <div class="case__thumb"><image-slot id="case-feature" src="https://i.ytimg.com/vi/e_XxXNaKrHk/oardefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
+        <div class="case__thumb"><image-slot id="case-feature" src="https://i.ytimg.com/vi/e_XxXNaKrHk/oardefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
@@ -1046,7 +1046,7 @@ body.menu-open { overflow: hidden; }
       </article>
 
       <article class="case reveal" data-d="1" data-yt="0CdqrFw2n-I" data-vertical="1">
-        <div class="case__thumb"><image-slot id="case-2" src="https://i.ytimg.com/vi/0CdqrFw2n-I/oardefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
+        <div class="case__thumb"><image-slot id="case-2" src="https://i.ytimg.com/vi/0CdqrFw2n-I/oardefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
@@ -1059,7 +1059,7 @@ body.menu-open { overflow: hidden; }
       </article>
 
       <article class="case reveal" data-d="2" data-yt="Ut894PGTfxw">
-        <div class="case__thumb"><image-slot id="case-3" src="https://i.ytimg.com/vi/Ut894PGTfxw/maxresdefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
+        <div class="case__thumb"><image-slot id="case-3" src="https://i.ytimg.com/vi/Ut894PGTfxw/maxresdefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
@@ -1072,7 +1072,7 @@ body.menu-open { overflow: hidden; }
       </article>
 
       <article class="case reveal" data-d="1" data-yt="jG6VO0kYk3Q">
-        <div class="case__thumb"><image-slot id="case-4" src="https://i.ytimg.com/vi/jG6VO0kYk3Q/maxresdefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
+        <div class="case__thumb"><image-slot id="case-4" src="https://i.ytimg.com/vi/jG6VO0kYk3Q/maxresdefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
@@ -1085,7 +1085,7 @@ body.menu-open { overflow: hidden; }
       </article>
 
       <article class="case reveal" data-d="2" data-yt="e7nKF4H8SJY">
-        <div class="case__thumb"><image-slot id="case-5" src="https://i.ytimg.com/vi/e7nKF4H8SJY/maxresdefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
+        <div class="case__thumb"><image-slot id="case-5" src="https://i.ytimg.com/vi/e7nKF4H8SJY/maxresdefault.jpg" fit="cover" shape="rect" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
@@ -1209,7 +1209,7 @@ writing">Quién escribe</h2>
         <span class="work__scrim"></span>
         <div class="work__meta">
           <span class="work__cue label">Behance ↗</span>
-          <h3 class="work__name" data-es="El hogar que llega a tu hogar." data-en="The Home that delivers to your home.">El hogar que llega a tu hogar.</h3>
+          <h3 class="work__name" data-es="#SelecciónAguila fichó once íconos diversos en tiempos de polarización." data-en="#SelecciónAguila signed eleven diverse icons in times of polarization.">#SelecciónAguila fichó once íconos diversos en tiempos de polarización.</h3>
         </div>
       </a>
 
@@ -1275,28 +1275,17 @@ trusted">Marcas que confiaron</h2>
   </div>
 </section>
 
-<!-- ========================= MANIFESTO 2 ========================= -->
-<section class="manifesto alt">
-  <div class="wrap">
-    <p class="manifesto__q reveal" data-es="Escribir bien
-es pensar dos veces." data-en="To write well
-is to think twice.">Escribir bien es pensar dos veces.</p>
-    <div class="manifesto__sub reveal" data-d="2"><span class="label" data-es="(Y borrar la mitad)" data-en="(And delete half)">(Y borrar la mitad)</span></div>
-  </div>
-</section>
-
 <!-- ========================= CONTACT ========================= -->
 <footer class="contact" id="contact">
   <div class="wrap">
     <span class="label contact__pre reveal" data-es="¿Tu próxima idea necesita un amigo?" data-en="Does your next idea need a friend?">¿Tu próxima idea necesita un amigo?</span>
     <h2 class="contact__big reveal" data-d="1">
-      <a href="mailto:isaaczapatar@gmail.com" data-es="Hablemos<span class=&quot;reg-mark&quot;>®</span>" data-en="Let's talk<span class=&quot;reg-mark&quot;>®</span>">Hablemos<span class="reg-mark">®</span></a>
+      <a href="https://www.linkedin.com/in/isaac-zapata" target="_blank" rel="noopener" data-es="Hablemos<span class=&quot;reg-mark&quot;>®</span>" data-en="Let's talk<span class=&quot;reg-mark&quot;>®</span>">Hablemos<span class="reg-mark">®</span></a>
     </h2>
     <div class="contact__row">
       <div class="contact__socials reveal">
         <a class="label" href="mailto:isaaczapatar@gmail.com">isaaczapatar@gmail.com</a>
-        <a class="label" href="https://www.linkedin.com/in/isaaczapata" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="label" href="https://www.youtube.com/@isaaczapata" target="_blank" rel="noopener">YouTube</a>
+        <a class="label" href="https://www.linkedin.com/in/isaac-zapata" target="_blank" rel="noopener">LinkedIn</a>
         <a class="label" href="https://wa.me/573000000000" target="_blank" rel="noopener">WhatsApp</a>
       </div>
       <p class="contact__colofon reveal" data-d="1" data-es="Isaac Zapata · Copywriter &amp; Publicista · Bogotá, Colombia · 2026" data-en="Isaac Zapata · Copywriter &amp; Adman · Bogotá, Colombia · 2026">Isaac Zapata · Copywriter &amp; Publicista · Bogotá, Colombia · 2026</p>
@@ -1323,7 +1312,7 @@ is to think twice.">Escribir bien es pensar dos veces.</p>
 <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursor-label"></span></div>
 
 <script src="assets/js/components.js"></script>
-<script src="assets/js/interactions.js"></script>
+<script src="assets/js/interactions.js?v=6"></script>
 <script src="assets/js/extra-fx.js"></script>
 
 <!-- menú móvil (hamburguesa) -->
