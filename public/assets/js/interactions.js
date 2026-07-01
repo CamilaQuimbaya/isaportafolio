@@ -288,6 +288,7 @@
     if (nav) {
       if (y > navLast && y > 220) nav.classList.add("nav--up");
       else nav.classList.remove("nav--up");
+      nav.classList.toggle("nav--scrolled", y > 30);
     }
     navLast = y;
   }, { passive: true });
