@@ -43,7 +43,7 @@
     // etiquetas del cursor contextual: reactivas al idioma
     var port = document.querySelector(".hero__portrait");
     if (port && port.hasAttribute("data-cur"))
-      port.setAttribute("data-cur-label", l === "en" ? "The ideas guy" : "El de las ideas");
+      port.setAttribute("data-cur-label", l === "en" ? "The copy behind the copy" : "El copy detrás del copy");
     document.querySelectorAll(".case[data-cur]").forEach(function (c) {
       c.setAttribute("data-cur-label", l === "en" ? "Play" : "Ver");
     });
@@ -156,7 +156,7 @@
     var portrait = document.querySelector(".hero__portrait");
     if (portrait) {
       portrait.setAttribute("data-cur", "drag");
-      portrait.setAttribute("data-cur-label", lang === "en" ? "The ideas guy" : "El de las ideas");
+      portrait.setAttribute("data-cur-label", lang === "en" ? "The copy behind the copy" : "El copy detrás del copy");
       portrait.classList.add("cursor-hide");
     }
 
@@ -299,8 +299,10 @@
   var lbFrame = document.getElementById("lb-frame");
   var lbClose = document.getElementById("lb-close");
 
-  function openCase(yt) {
+  function openCase(yt, vertical) {
     if (!lb) return;
+    var inner = lb.querySelector(".lightbox__inner");
+    if (inner) inner.classList.toggle("vertical", !!vertical);
     if (yt) {
       lbFrame.innerHTML = '<iframe src="https://www.youtube.com/embed/' + yt +
         '?autoplay=1&rel=0" title="Caso en video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
@@ -341,7 +343,7 @@
   document.querySelectorAll(".case").forEach(function (c) {
     c.addEventListener("click", function () {
       if (dragged) { dragged = false; return; }
-      openCase(c.getAttribute("data-yt"));
+      openCase(c.getAttribute("data-yt"), c.hasAttribute("data-vertical"));
     });
   });
   if (lbClose) lbClose.addEventListener("click", closeLb);

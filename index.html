@@ -517,17 +517,21 @@ body.menu-open { overflow: hidden; }
 .case:hover .case__thumb image-slot { transform: scale(1.05); }
 
 .case__scrim {
-  position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.0) 38%, rgba(0,0,0,.62) 100%);
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: rgba(6, 7, 12, 0.95);
+  opacity: 0; transition: opacity .45s ease;
 }
+.case:hover .case__scrim, .case:focus-within .case__scrim { opacity: 1; }
 .case__play {
-  position: absolute; z-index: 3; left: clamp(16px,2vw,28px); top: clamp(16px,2vw,28px);
+  position: absolute; z-index: 2;
+  left: clamp(16px, 2vw, 30px); bottom: clamp(16px, 2vw, 30px);
   width: clamp(48px, 5vw, 76px); height: clamp(48px, 5vw, 76px); border-radius: 50%;
   background: var(--blue); color: var(--cream);
   display: grid; place-items: center;
-  transition: transform .4s cubic-bezier(.22,1,.36,1), background .3s;
+  opacity: 0; transform: scale(.85);
+  transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .45s ease;
 }
-.case:hover .case__play { transform: scale(1.12); background: var(--cream); color: var(--blue); }
+.case:hover .case__play, .case:focus-within .case__play { opacity: 1; transform: scale(1); }
 .case__play svg { width: 38%; height: 38%; margin-left: 8%; }
 
 .case__meta {
@@ -536,12 +540,10 @@ body.menu-open { overflow: hidden; }
   display: flex; align-items: flex-end; justify-content: space-between; gap: 18px;
 }
 .case__title { font-family: var(--f-display); font-weight: 900; font-stretch: 110%;
-  text-transform: uppercase; line-height: .86; letter-spacing: -0.02em; }
-.case__title { font-size: clamp(1.25rem, 1.9vw, 1.9rem); }
-.case__sub { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; opacity: .82; }
-.case__sub .label { color: var(--cream); }
-.case__year { font-family: var(--f-ui); font-weight: 500; font-size: clamp(13px,1.1vw,15px);
-  letter-spacing: .12em; flex-shrink: 0; }
+  text-transform: uppercase; line-height: .92; letter-spacing: -0.02em;
+  text-shadow: 0 2px 14px rgba(0,0,0,.55); }
+.case__title { font-size: clamp(0.95rem, 1.35vw, 1.3rem); }
+.case__sub, .case__year { display: none; }
 
 /* ============================================================
    MANIFESTO breaks
@@ -696,10 +698,10 @@ body.menu-open { overflow: hidden; }
   }
   .cursor.show { opacity: 1; }
   .cursor__label {
-    font-family: var(--f-ui); font-weight: 700; font-size: 12px; letter-spacing: .14em;
+    font-family: var(--f-ui); font-weight: 700; font-size: 11px; letter-spacing: .08em;
     text-transform: uppercase; color: var(--cream);
     opacity: 0; transform: scale(.6); transition: opacity .25s, transform .25s;
-    white-space: nowrap;
+    white-space: normal; text-align: center; line-height: 1.05; max-width: 86px;
   }
   .cursor.is-link { width: 46px; height: 46px; mix-blend-mode: difference; }
   .cursor.is-media {
@@ -783,6 +785,8 @@ body.menu-open { overflow: hidden; }
 }
 .lightbox.open { display: grid; }
 .lightbox__inner { width: min(1100px, 100%); aspect-ratio: 16/9; position: relative; }
+.lightbox__inner.vertical { width: auto; height: min(86vh, 780px); max-width: 100%; aspect-ratio: 9/16; }
+.lightbox__inner #lb-frame { position: absolute; inset: 0; }
 .lightbox__inner iframe { width: 100%; height: 100%; border: 0; }
 .lightbox__close { position: absolute; top: -46px; right: 0; color: var(--cream);
   font-family: var(--f-ui); font-weight: 500; letter-spacing: .14em; font-size: 13px;
@@ -960,14 +964,14 @@ body.menu-open { overflow: hidden; }
 <header class="hero" id="top">
   <div class="hero__top">
     <div class="hero__meta">
-      <span class="label" data-es="Copywriter · Publicista" data-en="Copywriter · Adman">Copywriter · Publicista</span>
-      <span class="label lead" data-es="Cali → Bogotá, CO" data-en="Cali → Bogotá, CO">Cali → Bogotá, CO</span>
-      <span class="label" data-es="Disponible 2026" data-en="Available 2026">Disponible 2026</span>
+      <span class="label" data-es="Copywriter Senior" data-en="Senior Copywriter">Copywriter Senior</span>
+      <span class="label lead" data-es="Radicado en Bogotá, Colombia" data-en="Based in Bogotá, Colombia">Radicado en Bogotá, Colombia</span>
     </div>
     <div class="hero__meta right">
-      <span class="label" data-es="Redacción · Storytelling" data-en="Copy · Storytelling">Redacción · Storytelling</span>
-      <span class="label" data-es="Creatividad · Comerciales" data-en="Creative · TV Spots">Creatividad · Comerciales</span>
-      <span class="label lead" data-es="10+ años en publicidad" data-en="10+ yrs in advertising">10+ años en publicidad</span>
+      <span class="label" data-es="Copy · Concepto · Storytelling" data-en="Copy · Concept · Storytelling">Copy · Concepto · Storytelling</span>
+      <span class="label" data-es="Film · Digital · Retail · CRM · 360" data-en="Film · Digital · Retail · CRM · 360">Film · Digital · Retail · CRM · 360</span>
+      <span class="label" data-es="Integración de IA" data-en="AI Integration">Integración de IA</span>
+      <span class="label lead" data-es="+10 años de experiencia" data-en="+10 yrs experience">+10 años de experiencia</span>
     </div>
   </div>
 
@@ -1002,72 +1006,70 @@ body.menu-open { overflow: hidden; }
 <section class="section section--cases" id="cases">
   <div class="wrap">
     <div class="cases__head reveal">
-      <span class="label section__num">01 — <span data-es="Casos en video" data-en="Video cases">Casos en video</span></span>
-      <span class="label cases__hint" data-es="Arrastra para ver más →" data-en="Drag for more →">Arrastra para ver más →</span>
+      <span class="label section__num">01 — <span data-es="Reel" data-en="Reel">Reel</span></span>
+      <span class="label cases__hint" data-es="More →" data-en="More →">More →</span>
     </div>
 
     <div class="cases__carousel" id="casesCarousel">
-      <article class="case reveal" data-yt="">
-        <div class="case__thumb"><image-slot id="case-feature" placeholder="Miniatura"></image-slot></div>
+      <article class="case reveal" data-yt="e_XxXNaKrHk" data-vertical="1">
+        <div class="case__thumb"><image-slot id="case-feature" src="https://i.ytimg.com/vi/e_XxXNaKrHk/oardefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
           <div>
-            <h3 class="case__title" data-es="Lo que nadie
-se atrevía a decir" data-en="What no one
-dared to say">Lo que nadie se atrevía a decir</h3>
+            <h3 class="case__title" data-es="Escúchalo de Iker Casillas" data-en="Hear it from Iker Casillas">Escúchalo de Iker Casillas</h3>
             <div class="case__sub"><span class="label" data-es="Idea + Guion + Voz" data-en="Idea + Script + Voice">Idea + Guion + Voz</span></div>
           </div>
           <span class="case__year">2025</span>
         </div>
       </article>
 
-      <article class="case reveal" data-d="1" data-yt="">
-        <div class="case__thumb"><image-slot id="case-2" placeholder="Miniatura"></image-slot></div>
+      <article class="case reveal" data-d="1" data-yt="0CdqrFw2n-I" data-vertical="1">
+        <div class="case__thumb"><image-slot id="case-2" src="https://i.ytimg.com/vi/0CdqrFw2n-I/oardefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
           <div>
-            <h3 class="case__title" data-es="Campaña de lanzamiento" data-en="Launch campaign">Campaña de lanzamiento</h3>
+            <h3 class="case__title" data-es="Cuando lo explica una leyenda del fútbol, todo encaja" data-en="When a football legend explains it, it just clicks">Cuando lo explica una leyenda del fútbol, todo encaja</h3>
             <div class="case__sub"><span class="label" data-es="Cliente" data-en="Client">Cliente</span></div>
           </div>
           <span class="case__year">2024</span>
         </div>
       </article>
 
-      <article class="case reveal" data-d="2" data-yt="">
-        <div class="case__thumb"><image-slot id="case-3" placeholder="Miniatura"></image-slot></div>
+      <article class="case reveal" data-d="2" data-yt="Ut894PGTfxw">
+        <div class="case__thumb"><image-slot id="case-3" src="https://i.ytimg.com/vi/Ut894PGTfxw/maxresdefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
           <div>
-            <h3 class="case__title" data-es="Comercial de marca" data-en="Brand spot">Comercial de marca</h3>
+            <h3 class="case__title" data-es="Convierte cada compra en un boleto" data-en="Turn every purchase into a ticket">Convierte cada compra en un boleto</h3>
             <div class="case__sub"><span class="label" data-es="Cliente" data-en="Client">Cliente</span></div>
           </div>
           <span class="case__year">2024</span>
         </div>
       </article>
 
-      <article class="case reveal" data-d="1" data-yt="">
-        <div class="case__thumb"><image-slot id="case-4" placeholder="Miniatura"></image-slot></div>
+      <article class="case reveal" data-d="1" data-yt="jG6VO0kYk3Q">
+        <div class="case__thumb"><image-slot id="case-4" src="https://i.ytimg.com/vi/jG6VO0kYk3Q/maxresdefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
           <div>
-            <h3 class="case__title" data-es="Activación social" data-en="Social activation">Activación social</h3>
+            <h3 class="case__title" data-es="Déjate llevar al Mundial" data-en="Let yourself go to the World Cup">Déjate llevar al Mundial</h3>
             <div class="case__sub"><span class="label" data-es="Cliente" data-en="Client">Cliente</span></div>
           </div>
           <span class="case__year">2023</span>
         </div>
       </article>
 
-      <article class="case reveal" data-d="2" data-yt="">
-        <div class="case__thumb"><image-slot id="case-5" placeholder="Miniatura"></image-slot></div>
+      <article class="case reveal" data-d="2" data-yt="e7nKF4H8SJY">
+        <div class="case__thumb"><image-slot id="case-5" src="https://i.ytimg.com/vi/e7nKF4H8SJY/maxresdefault.jpg" fit="cover" placeholder="Miniatura"></image-slot></div>
         <span class="case__scrim"></span>
         <button class="case__play" aria-label="Reproducir"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
         <div class="case__meta">
           <div>
-            <h3 class="case__title" data-es="Manifiesto de marca" data-en="Brand manifesto">Manifiesto de marca</h3>
+            <h3 class="case__title" data-es="Visa marca el camino del hincha" data-en="Visa leads the way of the fan">Visa marca el camino del hincha</h3>
             <div class="case__sub"><span class="label" data-es="Cliente" data-en="Client">Cliente</span></div>
           </div>
           <span class="case__year">2023</span>
