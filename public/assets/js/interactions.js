@@ -6,7 +6,9 @@
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  var lang = localStorage.getItem("iz-lang") || "es";
+  // TEMPORAL: sitio bloqueado en inglés; cambio de idioma deshabilitado.
+  var LANG_LOCK = "en";
+  var lang = LANG_LOCK || localStorage.getItem("iz-lang") || "es";
 
   /* ---------- helpers ---------- */
   function lerp(a, b, n) { return a + (b - a) * n; }
@@ -62,12 +64,15 @@
   });
 
   var langBtn = document.getElementById("lang");
-  if (langBtn) {
+  if (langBtn && !LANG_LOCK) {
     var flip = function () { applyLang(lang === "es" ? "en" : "es"); };
     langBtn.addEventListener("click", flip);
     langBtn.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); }
     });
+  } else if (langBtn) {
+    // TEMPORAL: oculta el conmutador ES/EN mientras el sitio está bloqueado en inglés.
+    langBtn.style.display = "none";
   }
   applyLang(lang);
 

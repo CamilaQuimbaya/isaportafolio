@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Isaac Zapata — Copywriter &amp; Publicista</title>
@@ -1387,6 +1387,10 @@ trusted">Marcas que confiaron</h2>
   });
   menu.querySelectorAll("a").forEach(function (a) {
     a.addEventListener("click", function () { setOpen(false); });
+  });
+  // Cerrar al tocar fuera de los enlaces (área vacía del overlay).
+  menu.addEventListener("click", function (e) {
+    if (!e.target.closest(".mobile-menu__links")) setOpen(false);
   });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") setOpen(false);
