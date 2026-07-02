@@ -355,7 +355,7 @@
       car.appendChild(clone);
     });
 
-    var carHover = false, idleUntil = 0, down = false, startX = 0, startL = 0;
+    var carHover = false, idleUntil = 0, down = false, startX = 0, startL = 0, pos = 0;
     var now = function () { return window.performance ? performance.now() : 0; };
     var mark = function () { idleUntil = now() + 1400; };   // pausa breve tras interactuar
     car.addEventListener("mouseenter", function () { carHover = true; });
@@ -378,15 +378,20 @@
       car.scrollLeft = startL - dx; mark();
     });
 
+    /* Posición propia en float: scrollLeft se trunca a entero en varios
+       navegadores, así que sumar 0.6 se redondeaba a 0 y no avanzaba. */
     var carLoop = function (t) {
       var half = car.scrollWidth / 2;
       if (half > 8) {
         if (!carHover && !down && t > idleUntil &&
             !(lb && lb.classList.contains("open")) && !document.hidden) {
-          car.scrollLeft += 0.6;
+          pos += 0.6;                                                // auto-avance
+        } else {
+          pos = car.scrollLeft;                                     // sigue al usuario mientras controla
         }
-        if (car.scrollLeft >= half) car.scrollLeft -= half;         // loop infinito →
-        else if (car.scrollLeft < 0) car.scrollLeft += half;         // ← y en reversa
+        if (pos >= half) pos -= half;                               // loop infinito →
+        else if (pos < 0) pos += half;                              // ← y en reversa
+        car.scrollLeft = pos;
       }
       requestAnimationFrame(carLoop);
     };
